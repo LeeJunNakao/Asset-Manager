@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "assets_manager"
+version = "0.1.0"
+description = ""
+authors = ["Lee Jun <leejun.nakao@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.70.0"
+uvicorn = {extras = ["standard"], version = "^0.15.0"}
+dependency-injector = "^4.37.0"
+SQLAlchemy = "^1.4.27"
+alembic = "^1.7.5"
+autopep8 = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
