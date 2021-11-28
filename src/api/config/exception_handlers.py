@@ -3,7 +3,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from src.database.exceptions.exceptions import DatabaseException
-from src.domain._exceptions.exceptions import ServiceExceptions
+from src.domain.exceptions.exceptions import ServiceExceptions
 
 
 def set_exception_handlers(app):

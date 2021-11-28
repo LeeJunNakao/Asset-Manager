@@ -1,7 +1,5 @@
 from dependency_injector import containers, providers
-from dependency_injector.wiring import Provide, inject
-
-from src.domain.Asset.services import AssetService
+from src.domain.entities.asset.services import AssetService
 from src.database.repositories.asset import AssetRepo
 from src.database.config import Session
 
