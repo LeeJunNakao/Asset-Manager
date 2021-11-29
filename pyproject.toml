@@ -12,6 +12,8 @@ dependency-injector = "^4.37.0"
 SQLAlchemy = "^1.4.27"
 alembic = "^1.7.5"
 autopep8 = "^1.6.0"
+requests = "^2.26.0"
+toolz = "^0.11.2"
 
 [tool.poetry.dev-dependencies]
 
