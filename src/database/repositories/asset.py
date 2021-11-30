@@ -47,6 +47,7 @@ class AssetRepo:
             raise InexistentItem(self._entity)
         try:
             for key, value in dto.dict(exclude_none=True).items():
+                print("@@@@@@@@@@@@@@", key, value)
                 setattr(asset, key, value)
             self._session.commit()
             return AssetDto.from_orm(asset)

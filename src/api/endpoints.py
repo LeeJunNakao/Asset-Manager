@@ -18,6 +18,7 @@ class PutRequestBody(BaseModel):
     def require_at_least_one_field(cls, v, values):
         if not v and not values.get("code"):
             raise ValueError('Asset code or name must be provided')
+        return v
 
 
 class DeleteRequestBody(BaseModel):
