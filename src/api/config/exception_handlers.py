@@ -4,6 +4,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from src.database.exceptions.exceptions import DatabaseException
 from src.domain.exceptions.exceptions import ServiceExceptions
+from src.api.exceptions.exceptions import AuthenticationException
 
 
 def set_exception_handlers(app):
@@ -21,3 +22,5 @@ def set_exception_handlers(app):
     @app.exception_handler(ServiceExceptions)
     def database_exception_handler(request: Request, exc: ServiceExceptions):
         return JSONResponse(status_code=exc.status_code, content=jsonable_encoder({"entity": exc.entity, "details": exc.details}))
+
+    return app

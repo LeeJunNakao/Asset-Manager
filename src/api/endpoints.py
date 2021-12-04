@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends, status, Header
+from fastapi import APIRouter, Depends, status, Header, Request
 from typing import Optional
+from toolz import assoc
 from pydantic import BaseModel, validator
 from dependency_injector.wiring import inject, Provide
 from container import Container
@@ -9,8 +10,12 @@ from src.domain.entities.asset.dto import AssetCreateDto, AssetUpdateDto
 router = APIRouter()
 
 
+class CreateRequestBody(BaseModel):
+    name: str
+    code: str
+
+
 class PutRequestBody(BaseModel):
-    user_id: int
     code: Optional[str]
     name: Optional[str]
 
@@ -27,21 +32,26 @@ class DeleteRequestBody(BaseModel):
 
 @router.post("/asset", status_code=status.HTTP_201_CREATED)
 @inject
-def create(asset: AssetCreateDto, asset_service: AssetService = Depends(Provide[Container.asset_service])):
-    return asset_service.create(asset)
+def create(asset: CreateRequestBody, request: Request, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    user_id = request.headers.get("user_id")
+    dto = AssetCreateDto(**assoc(asset.dict(), "user_id", user_id))
+    return asset_service.create(dto)
 
 
 @router.get("/asset", status_code=status.HTTP_200_OK)
 @inject
-def index(user_id: int, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+def index(request: Request, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    user_id = request.headers.get("user_id")
     items = asset_service.find_all_by_user(user_id)
     return items
 
 
 @router.put("/asset/{asset_id}", status_code=status.HTTP_200_OK)
 @inject
-def update(asset_id: int, asset: PutRequestBody, asset_service: AssetService = Depends(Provide[Container.asset_service])):
-    data = {"id": asset_id, **asset.dict()}
+def update(asset_id: int, asset: PutRequestBody, request: Request, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    user_id = request.headers.get("user_id")
+    data = {"id": asset_id, "user_id": user_id, **asset.dict()}
+
     dto = AssetUpdateDto(**data)
     item = asset_service.update(dto)
     return item
