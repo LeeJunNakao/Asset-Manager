@@ -1,6 +1,6 @@
 from typing_extensions import Required
 
-from tests.unit.domain.entities.utils.auxiliar_fns import check_required_fields, check_optional_fields
+from tests.unit.domain.entities.utils.dto.auxiliar_fns import check_required_fields, check_optional_fields
 
 
 class DefaultEntityTests:

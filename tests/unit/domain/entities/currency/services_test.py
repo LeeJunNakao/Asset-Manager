@@ -1,25 +1,25 @@
 import pytest
 from unittest.mock import Mock
-from src.database.repositories.asset import AssetRepo
-from src.domain.entities.asset.services import AssetService
-from src.domain.entities.asset.dto import AssetCreateDto, AssetUpdateDto
+from src.database.repositories.currency import CurrencyRepo
+from src.domain.entities.currency.services import CurrencyService
+from src.domain.entities.currency.dto import CurrencyCreateDto, CurrencyUpdateDto
 from tests.unit.domain.entities.utils.services.auxiliar_fns import check_create, check_find_all_by_user, check_update, check_delete
 
 
 class TestAssetService:
-    service = AssetService
+    service = CurrencyService
 
     @pytest.fixture
     def repo(self):
-        return Mock(name="asset_repo", spec=AssetRepo)
+        return Mock(name="currency_repo", spec=CurrencyRepo)
 
     @pytest.fixture
     def create_dto(self):
-        return AssetCreateDto(code="GOOG", name="Google", user_id=99)
+        return CurrencyCreateDto(code="USD", name="Dolar", user_id=99)
 
     @pytest.fixture
     def update_dto(self):
-        return AssetUpdateDto(id=1, user_id=99, name="Yahoo")
+        return CurrencyUpdateDto(id=1, user_id=99, name="Dollar")
 
     def test_create(self, repo, create_dto):
         check_create(self, repo, create_dto)
