@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, UniqueConstraint
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.sql.schema import ColumnDefault
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 

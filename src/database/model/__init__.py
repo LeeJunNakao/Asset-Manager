@@ -1,4 +1,5 @@
 from .asset import Asset
 from .currency import Curency
+from .asset_entry import AssetEntry
 
-tables = [Asset, Curency]
+tables = [Asset, Curency, AssetEntry]
