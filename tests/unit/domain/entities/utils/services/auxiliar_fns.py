@@ -1,38 +1,38 @@
-def check_create(self, repo, create_dto):
+def check_create(self, create_dto, **repo):
     expected_return = "persisted"
-    repo.persist.return_value = expected_return
+    repo["repo"].persist.return_value = expected_return
 
-    service = self.service(repo)
+    service = self.service(**repo)
     result = service.create(create_dto)
 
     assert result == expected_return
 
 
-def check_find_all_by_user(self, repo):
+def check_find_all_by_user(self, **repo):
     expected_return = "all found"
-    repo.find_by_user.return_value = expected_return
+    repo["repo"].find_by_user.return_value = expected_return
 
-    service = self.service(repo)
+    service = self.service(**repo)
     result = service.find_all_by_user(user_id=1)
 
     assert result == expected_return
 
 
-def check_update(self, repo, update_dto):
+def check_update(self, update_dto, **repo):
     expected_return = "updated"
-    repo.update.return_value = expected_return
+    repo["repo"].update.return_value = expected_return
 
-    service = self.service(repo)
+    service = self.service(**repo)
     result = service.update(update_dto)
 
     assert result == expected_return
 
 
-def check_delete(self, repo):
+def check_delete(self, **repo):
     expected_return = "deleted"
-    repo.delete.return_value = expected_return
+    repo["repo"].delete.return_value = expected_return
 
-    service = self.service(repo)
+    service = self.service(**repo)
     result = service.delete(_id=1, user_id=99)
 
     assert result == expected_return

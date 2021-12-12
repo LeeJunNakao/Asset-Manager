@@ -7,20 +7,20 @@ class ServiceExceptions(Exception):
 
 
 class FailedToCreate(ServiceExceptions):
-    def __init__(self, entity):
-        super().__init__(entity,  f"Failed to create {entity}")
+    def __init__(self, entity: str, message: str):
+        super().__init__(entity, message or f"Failed to create {entity}")
 
 
 class FailedToFind(ServiceExceptions):
-    def __init__(self, entity):
+    def __init__(self, entity: str):
         super().__init__(entity, f"Failed to find {entity}")
 
 
 class FailedToUpdate(ServiceExceptions):
-    def __init__(self, entity):
+    def __init__(self, entity: str):
         super().__init__(entity, f"Failed to update {entity}")
 
 
 class FailedToDelete(ServiceExceptions):
-    def __init__(self, entity):
+    def __init__(self, entity: str):
         super().__init__(entity, f"Failed to delete {entity}")

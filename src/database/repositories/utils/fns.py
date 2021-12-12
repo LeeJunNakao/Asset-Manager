@@ -1,15 +1,12 @@
-from src.database.exceptions.exceptions import UniqueViolationException, InexistentItem
+from typing import Any, List
+from sqlalchemy import and_
+from toolz import assoc
+
+from src.database.exceptions.exceptions import InexistentItem
 from src.domain.exceptions.exceptions import FailedToCreate, FailedToFind, FailedToUpdate, FailedToDelete
 
 
 def persist(self, dto):
-    item = self._session.query(self.model).filter(
-        self.model.code == dto.code
-    ).filter(
-        self.model.user_id == dto.user_id
-    ).all()
-    if len(item):
-        raise UniqueViolationException(self._entity)
     try:
         data = self.model(**dto.dict())
         self._session.add(data)
@@ -19,6 +16,34 @@ def persist(self, dto):
     except Exception:
         self._session.rollback()
         raise FailedToCreate(self._entity)
+    finally:
+        self._session.close()
+
+
+def find_by(self, user_id: int, **kwargs):
+    try:
+        items = self._session.query(self.model).filter(
+            and_(
+                *[getattr(self.model, key) == kwargs[key] for key in kwargs]
+            )
+        ).filter(self.model.user_id == user_id).all()
+        return [self.base_model.from_orm(item) for item in items]
+    except Exception:
+        self._session.rollback()
+        raise FailedToFind(self._entity)
+    finally:
+        self._session.close()
+
+
+def find_in(self, user_id: int, field: str, values: List[Any]):
+    try:
+        items = self._session.query(self.model).filter(self.model.user_id == user_id).filter(
+            *[getattr(self.model, field).in_(values)]
+        ).all()
+        return [self.base_model.from_orm(item) for item in items]
+    except Exception:
+        self._session.rollback()
+        raise FailedToFind(self._entity)
     finally:
         self._session.close()
 

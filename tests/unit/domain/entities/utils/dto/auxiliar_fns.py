@@ -1,4 +1,5 @@
 import pytest
+from toolz import dissoc
 from pydantic import ValidationError
 from typing import Any, Dict, List
 
@@ -13,8 +14,7 @@ def check_required_fields(required_fields: List[str], valid_data, dto):
 
 def check_optional_fields(optional_fields: List[str], valid_data, dto):
     for field in optional_fields:
-        data = {key: value for key, value in valid_data.items()
-                if key != field}
+        data = dissoc(valid_data, field)
         assert dto(**data)
 
 

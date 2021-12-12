@@ -22,7 +22,7 @@ class TestAssetService:
         return AssetEntryUpdateDto(id=1, user_id=99, quantity=300)
 
     def test_create(self, repo, create_dto):
-        check_create(self, repo, create_dto)
+        check_create(self, create_dto, repo=repo)
 
     def test_find_all_by_user(self, repo):
         asset_222 = [
@@ -53,7 +53,7 @@ class TestAssetService:
         }
 
     def test_update(self, repo, update_dto):
-        check_update(self, repo, update_dto)
+        check_update(self, update_dto, repo=repo)
 
     def test_delete(self, repo):
-        check_delete(self, repo)
+        check_delete(self, repo=repo)
