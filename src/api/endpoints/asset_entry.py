@@ -5,7 +5,7 @@ from pydantic import BaseModel, validator
 from dependency_injector.wiring import inject, Provide
 from container import Container
 from src.domain.entities.asset_entry.services import AssetEntryService
-from src.domain.entities.asset_entry.dto import AssetEntryCreateDto, AssetEntryUpdateDto, entry_date, entry_asset_id, entry_user_id, entry_quantity, entry_currency_id, entry_value
+from src.domain.entities.asset_entry.dto import AssetEntryCreateDto, AssetEntryUpdateDto, entry_date, entry_asset_id, entry_user_id, entry_quantity, entry_currency_id, entry_value, entry_is_purchase
 
 asset_entry_router = APIRouter(prefix="/asset-entry")
 
@@ -15,6 +15,7 @@ class CreateRequestBody(BaseModel):
     asset_id: entry_asset_id
     quantity: entry_quantity
     currency_id: entry_currency_id
+    is_purchase: entry_is_purchase
     value: entry_value
 
 
@@ -22,6 +23,7 @@ class PutRequestBody(BaseModel):
     date: Optional[entry_date]
     quantity: Optional[entry_quantity]
     currency_id: Optional[entry_currency_id]
+    is_purchase: Optional[entry_is_purchase]
     value: Optional[entry_value]
 
 

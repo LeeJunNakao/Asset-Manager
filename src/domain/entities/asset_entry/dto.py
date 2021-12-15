@@ -10,6 +10,7 @@ from src.domain.entities.currency.dto import currency_id
 entry_id = int
 entry_date = str
 entry_asset_id = asset_id
+entry_is_purchase = bool
 entry_quantity = int
 entry_currency_id = currency_id
 entry_value = int
@@ -34,6 +35,7 @@ class AssetEntryCreateDto(BaseModel):
     date: entry_date
     asset_id: entry_asset_id
     user_id: entry_user_id
+    is_purchase: entry_is_purchase
     quantity: entry_quantity
     currency_id: entry_currency_id
     value: entry_value
@@ -51,6 +53,7 @@ class AssetEntryDto(BaseModel):
     id: entry_id
     date: entry_date
     asset_id: entry_asset_id
+    is_purchase: entry_is_purchase
     quantity: entry_quantity
     currency_id: entry_currency_id
     value: entry_value
@@ -65,6 +68,7 @@ class AssetEntryUpdateDto(BaseModel):
     id: entry_id
     user_id: entry_user_id
     date: Optional[entry_date]
+    is_purchase: Optional[entry_is_purchase]
     quantity: Optional[entry_quantity]
     currency_id: Optional[entry_currency_id]
     value: Optional[entry_value]

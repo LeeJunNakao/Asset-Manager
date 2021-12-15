@@ -28,6 +28,7 @@ class TestAssetRoute:
             "id": 111,
             "date": "2020-05-20",
             "asset_id": 1,
+            "is_purchase": True,
             "quantity": 100,
             "currency_id": 1,
             "value": 500000,
@@ -70,6 +71,7 @@ class TestAssetRoute:
                     "asset_id": 1,
                     "quantity": 100,
                     "currency_id": 1,
+                    "is_purchase": True,
                     "value": 500000,
                     "user_id": 1
                 },
@@ -78,6 +80,7 @@ class TestAssetRoute:
                     "asset_id": 1,
                     "quantity": 600,
                     "currency_id": 1,
+                    "is_purchase": True,
                     "value": 700000,
                     "user_id": 1
                 },
@@ -85,6 +88,7 @@ class TestAssetRoute:
                     "date": "2020-02-28",
                     "asset_id": 1,
                     "quantity": 100,
+                    "is_purchase": False,
                     "currency_id": 1,
                     "value": 700000,
                     "user_id": 1
@@ -93,6 +97,7 @@ class TestAssetRoute:
                     "date": "2020-03-05",
                     "asset_id": 2,
                     "quantity": 200,
+                    "is_purchase": True,
                     "currency_id": 1,
                     "value": 80000,
                     "user_id": 1
@@ -101,6 +106,7 @@ class TestAssetRoute:
                     "date": "2020-03-12",
                     "asset_id": 1,
                     "quantity": 300,
+                    "is_purchase": False,
                     "currency_id": 1,
                     "value": 62000,
                     "user_id": 2
@@ -109,6 +115,7 @@ class TestAssetRoute:
                     "date": "2020-03-15",
                     "asset_id": 2,
                     "quantity": 150,
+                    "is_purchase": False,
                     "currency_id": 1,
                     "value": 77500,
                     "user_id": 2
@@ -117,6 +124,7 @@ class TestAssetRoute:
                     "date": "2020-03-18",
                     "asset_id": 2,
                     "quantity": 300,
+                    "is_purchase": True,
                     "currency_id": 1,
                     "value": 12500,
                     "user_id": 2
@@ -167,6 +175,7 @@ class TestAssetRoute:
                 "date": "2020-10-01",
                 "quantity": 100,
                 "asset_id": 1,
+                "is_purchase": False,
                 "value": 10000000,
                 "currency_id": 1,
                 "user_id": 1

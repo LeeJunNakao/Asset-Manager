@@ -13,6 +13,7 @@ class TestAsset:
             "id": 111,
             "date": "2020-05-20",
             "asset_id": 222,
+            "is_purchase": True,
             "quantity": 100,
             "currency_id": 333,
             "value": 500000,
@@ -21,7 +22,7 @@ class TestAsset:
 
     class TestAssetEntryCreateDto(DefaultEntityTests):
         required_fields = [
-            "date", "asset_id", "quantity", "currency_id", "value", "user_id"
+            "date", "asset_id", "is_purchase", "quantity", "currency_id", "value", "user_id"
         ]
         dto = AssetEntryCreateDto
         optional_fields = []
@@ -35,7 +36,7 @@ class TestAsset:
 
     class TestAssetDto(DefaultEntityTests):
         required_fields = [
-            "id", "date", "asset_id", "quantity", "currency_id", "value", "user_id"
+            "id", "date", "asset_id", "is_purchase", "quantity", "currency_id", "value", "user_id"
         ]
         dto = AssetEntryDto
         optional_fields = []
@@ -46,7 +47,7 @@ class TestAsset:
         ]
         dto = AssetEntryUpdateDto
         optional_fields = [
-            "date", "quantity", "currency_id", "value"
+            "date", "quantity", "is_purchase", "currency_id", "value"
         ]
 
         def test_require_at_least_one_field(self, valid_data):
