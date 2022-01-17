@@ -10,13 +10,15 @@ def set_middlewares(app):
     @app.middleware("http")
     async def check_token(request: Request, call_next):
         try:
+            if request.method == "OPTIONS":
+                return await call_next(request)
+
             token = request.headers.get("access_token")
             if not token:
                 raise AuthenticationException()
 
             header_user_id = int(request.headers.get("user_id"))
             decoded_jwt = jwt.decode(token, JWT_SECRET, algorithms="HS256")
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", decoded_jwt)
             user_id = int(decoded_jwt["data"].get("id"))
 
             if header_user_id and header_user_id != user_id:
