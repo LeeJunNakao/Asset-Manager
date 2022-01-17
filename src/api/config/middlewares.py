@@ -16,7 +16,8 @@ def set_middlewares(app):
 
             header_user_id = int(request.headers.get("user_id"))
             decoded_jwt = jwt.decode(token, JWT_SECRET, algorithms="HS256")
-            user_id = int(decoded_jwt.get("user_id"))
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", decoded_jwt)
+            user_id = int(decoded_jwt["data"].get("id"))
 
             if header_user_id and header_user_id != user_id:
                 raise AuthenticationException()

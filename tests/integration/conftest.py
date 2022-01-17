@@ -23,7 +23,7 @@ def database(app):
 
 
 def create_token(user_id=1):
-    return jwt.encode({"user_id": user_id,  "exp": datetime.datetime.now() + datetime.timedelta(days=1)}, JWT_SECRET, algorithm="HS256")
+    return jwt.encode({"data": {"id": user_id, },  "exp": datetime.datetime.now() + datetime.timedelta(days=1)}, JWT_SECRET, algorithm="HS256")
 
 
 access_token = create_token()

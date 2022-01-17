@@ -3,5 +3,9 @@ from src.database.model.currency import currency_metadata
 from src.database.model.asset_entry import asset_entry_metadata
 from src.database.model.portfolio import portfolio_metadata
 
-metadatas = [asset_metadata, currency_metadata,
-             asset_entry_metadata, portfolio_metadata]
+metadatas = [
+    asset_metadata,
+    currency_metadata,
+    asset_entry_metadata,
+    portfolio_metadata
+]

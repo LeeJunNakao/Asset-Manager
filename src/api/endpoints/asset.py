@@ -41,8 +41,10 @@ def create(asset: CreateRequestBody, request: Request, asset_service: AssetServi
 @asset_router.get("", status_code=status.HTTP_200_OK)
 @inject
 def index(request: Request, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    print("!!!!!!!!!!!!!!!!!!!!!------------------")
     user_id = request.headers.get("user_id")
     items = asset_service.find_all_by_user(user_id)
+    print("@@@@@@@@@@@@@@@@@@", items)
     return items
 
 
