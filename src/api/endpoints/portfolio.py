@@ -53,6 +53,7 @@ def update(portfolio_id: int, portfolio: PutRequestBody, request: Request, servi
 
 @portfolio_router.delete("/{portfolio_id}", status_code=status.HTTP_200_OK)
 @inject
-def delete(portfolio_id: int, portfolio: DeleteRequestBody, service: Service = Depends(Provide[Container.portfolio_service])):
-    service.delete(portfolio_id, portfolio.user_id)
+def delete(portfolio_id: int, request: Request, service: Service = Depends(Provide[Container.portfolio_service])):
+    user_id = request.headers.get("user_id")
+    service.delete(portfolio_id, user_id)
     return "deleted"
