@@ -41,10 +41,8 @@ def create(asset: CreateRequestBody, request: Request, asset_service: AssetServi
 @asset_router.get("", status_code=status.HTTP_200_OK)
 @inject
 def index(request: Request, asset_service: AssetService = Depends(Provide[Container.asset_service])):
-    print("!!!!!!!!!!!!!!!!!!!!!------------------")
     user_id = request.headers.get("user_id")
     items = asset_service.find_all_by_user(user_id)
-    print("@@@@@@@@@@@@@@@@@@", items)
     return items
 
 
@@ -61,6 +59,7 @@ def update(asset_id: int, asset: PutRequestBody, request: Request, asset_service
 
 @asset_router.delete("/{asset_id}", status_code=status.HTTP_200_OK)
 @inject
-def delete(asset_id: int, asset: DeleteRequestBody, asset_service: AssetService = Depends(Provide[Container.asset_service])):
-    asset_service.delete(asset_id, asset.user_id)
+def delete(asset_id: int, request: Request,  asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    user_id = request.headers.get("user_id")
+    asset_service.delete(asset_id, user_id)
     return "deleted"
