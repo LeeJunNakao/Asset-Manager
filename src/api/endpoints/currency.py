@@ -59,8 +59,9 @@ def update(currency_id: int, asset: PutRequestBody, request: Request, service: S
     return item
 
 
-@currency_router.delete("/{asset_id}", status_code=status.HTTP_200_OK)
+@currency_router.delete("/{currency_id}", status_code=status.HTTP_200_OK)
 @inject
-def delete(asset_id: int, asset: DeleteRequestBody, service: Service = Depends(Provide[Container.currency_service])):
-    service.delete(asset_id, asset.user_id)
+def delete(currency_id: int, request: Request, service: Service = Depends(Provide[Container.currency_service])):
+    user_id = request.headers.get("user_id")
+    service.delete(currency_id, user_id)
     return "deleted"
