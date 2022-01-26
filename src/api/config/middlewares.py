@@ -28,6 +28,6 @@ def set_middlewares(app):
 
             return response
         except Exception as exc:
-            return JSONResponse(status_code=401, content=jsonable_encoder({"details": "Credentials invalid"}))
+            return JSONResponse(status_code=401, content=jsonable_encoder({"details": "Credentials invalid"}), headers={"Access-Control-Allow-Origin": "*"})
 
     return app

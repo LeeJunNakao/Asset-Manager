@@ -55,7 +55,6 @@ def find_by_user(self, user_id: int):
         ).filter(
             self.model.user_id == user_id
         ).all()
-        print("................................", items)
         return [self.base_model.from_orm(item) for item in items]
     except Exception:
         raise FailedToFind(self._entity)
