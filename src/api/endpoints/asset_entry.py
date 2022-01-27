@@ -60,6 +60,7 @@ def update(asset_id: int, asset: PutRequestBody, request: Request, service: Asse
 
 @asset_entry_router.delete("/{asset_id}", status_code=status.HTTP_200_OK)
 @inject
-def delete(asset_id: int, asset: DeleteRequestBody, service: AssetEntryService = Depends(Provide[Container.asset_entry_service])):
-    service.delete(asset_id, asset.user_id)
+def delete(asset_id: int, request: Request, service: AssetEntryService = Depends(Provide[Container.asset_entry_service])):
+    user_id = request.headers.get("user_id")
+    service.delete(asset_id, user_id)
     return "deleted"
