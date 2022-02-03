@@ -12,4 +12,5 @@ RUN poetry config virtualenvs.create false
 RUN poetry install
 RUN pip install psycopg2-binary
 COPY . .
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+RUN chmod +x start.sh
+CMD ["./start.sh"]

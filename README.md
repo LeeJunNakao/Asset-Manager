@@ -11,7 +11,6 @@
 
 - Run server: `uvicorn main:app --reload`
 
-
 ## Using Docker
 
 - Build image: `docker build -t asset-manager-backend .`

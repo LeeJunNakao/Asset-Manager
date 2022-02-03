@@ -1,5 +1,6 @@
 FROM python:3.9.0
 WORKDIR /home/app
+EXPOSE 8000
 ENV PYTHON_VERSION=3.9 \
   APP_PATH=/home/app \
   PATH=/home/python/.local/lib/python3.8/site-packages:/usr/local/bin:/home/python:/home/python/app/bin:$PATH:/usr/app:/root/.poetry/bin
