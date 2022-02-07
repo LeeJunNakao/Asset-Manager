@@ -3,6 +3,7 @@ from typing import Optional
 from toolz import assoc
 from pydantic import BaseModel, validator
 from dependency_injector.wiring import inject, Provide
+import yfinance as yf
 from container import Container
 from src.domain.entities.asset.services import AssetService
 from src.domain.entities.asset.dto import AssetCreateDto, AssetUpdateDto
@@ -63,3 +64,14 @@ def delete(asset_id: int, request: Request,  asset_service: AssetService = Depen
     user_id = request.headers.get("user_id")
     asset_service.delete(asset_id, user_id)
     return "deleted"
+
+
+@asset_router.get("/price/{asset_code}", status_code=status.HTTP_200_OK)
+@inject
+def index(request: Request, asset_code: str, asset_service: AssetService = Depends(Provide[Container.asset_service])):
+    msft = yf.Ticker(asset_code)
+    history = msft.history(period="max")
+    price = history.iloc[-1].at['Close']
+    date = history.iloc[-1].name.date()
+
+    return {"price": round(price, 2), "date": date}

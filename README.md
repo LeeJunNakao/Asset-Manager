@@ -15,3 +15,10 @@
 
 - Build image: `docker build -t asset-manager-backend .`
 - Running container: `docker run -d -p 8000:80 asset-manager-backend`
+
+
+## Deploying to Heroku
+
+- Login: `heroku container:login`
+- Push container: `heroku container:push web --app <APP_NAME>`
+- Realease container: `heroku container:release web --app asset-manager-lj-backend`

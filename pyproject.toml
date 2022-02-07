@@ -16,6 +16,7 @@ requests = "^2.26.0"
 toolz = "^0.11.2"
 PyJWT = "^2.3.0"
 freezegun = "^1.1.0"
+yfinance = "^0.1.70"
 
 [tool.poetry.dev-dependencies]
 
