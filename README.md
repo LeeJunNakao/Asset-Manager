@@ -21,4 +21,4 @@
 
 - Login: `heroku container:login`
 - Push container: `heroku container:push web --app <APP_NAME>`
-- Realease container: `heroku container:release web --app asset-manager-lj-backend`
+- Realease container: `heroku container:release web --app <APP_NAME>`
