@@ -14,7 +14,7 @@ class AssetEntry(Base):
     user_id = Column(Integer)
     date = Column(String)
     is_purchase = Column(Boolean)
-    quantity = Column(Integer)
+    quantity = Column(String)
     asset_id = Column(Integer, ForeignKey(Asset.id, ondelete="CASCADE"),
                       nullable=False)
     currency_id = Column(Integer, ForeignKey(Curency.id, ondelete="CASCADE"),

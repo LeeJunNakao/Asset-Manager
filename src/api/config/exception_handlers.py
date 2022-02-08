@@ -20,7 +20,7 @@ def set_exception_handlers(app):
         return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content=jsonable_encoder(exc))
 
     @app.exception_handler(ServiceExceptions)
-    def database_exception_handler(request: Request, exc: ServiceExceptions):
+    def service_exception_handler(request: Request, exc: ServiceExceptions):
         return JSONResponse(status_code=exc.status_code, content=jsonable_encoder({"entity": exc.entity, "details": exc.details}))
 
     return app

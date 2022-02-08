@@ -21,9 +21,9 @@ class AssetEntryRepo:
             self._session.commit()
             self._session.refresh(data)
             return self.base_model.from_orm(data)
-        except Exception:
+        except Exception as err:
             self._session.rollback()
-            raise FailedToCreate(self._entity)
+            raise FailedToCreate(self._entity, "Failed to create")
         finally:
             self._session.close()
 
